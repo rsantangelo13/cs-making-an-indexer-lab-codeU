@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 
+import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
 /**
@@ -55,10 +57,13 @@ public class Index {
 	 */
 	public void indexPage(String url, Elements paragraphs) {
 		// make a TermCounter and count the terms in the paragraphs
-        // TODO: fill this in
-		
+        TermCounter counter = new TermCounter(url);
+        counter.processElements(paragraphs);
+        
 		// for each term in the TermCounter, add the TermCounter to the index
-        // TODO: fill this in
+        for (String key: counter.keySet()) {
+			add(key, counter);
+        }
 	}
 
 	/**
